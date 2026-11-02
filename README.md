@@ -46,6 +46,9 @@ When you connect a station, NuaSense stores its readings and computes your forec
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### 0.1.1 (2026-11-03)
+* (NuaSense) checker fixes: Node.js 22, i18n for the admin UI, responsive sizes, trusted-publishing workflow, node:crypto
+
 ### 0.1.0 (2026-11-03)
 * (NuaSense) first release: first look and hourly agronomy as states; optional forwarding of a station from ioBroker to NuaSense
 

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nuasense",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NuaSense for ioBroker: what your weather station means for your crop (tonight's low, frost, spray window, ET0, leaf wetness), and optionally forward a station from ioBroker to NuaSense",
   "author": {
     "name": "NuaSense",
@@ -25,13 +25,16 @@
     "url": "https://github.com/nuasense/ioBroker.nuasense.git"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 22.19.0"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.2.3"
+    "@iobroker/adapter-core": "^3.4.3"
   },
   "devDependencies": {
-    "@iobroker/testing": "^5.0.4",
+    "@iobroker/eslint-config": "^2.3.4",
+    "@iobroker/testing": "^6.3.0",
+    "@iobroker/types": "^7.2.2",
+    "@types/node": "^22.20.2",
     "chai": "^4.5.0",
     "mocha": "^10.8.2"
   },
@@ -47,8 +50,10 @@
     "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
+    "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
-    "release": "echo release via GitHub"
+    "lint": "eslint -c eslint.config.mjs .",
+    "release": "echo release via a GitHub tag vX.Y.Z"
   },
   "bugs": {
     "url": "https://github.com/nuasense/ioBroker.nuasense/issues"

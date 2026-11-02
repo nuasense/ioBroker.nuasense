@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "nuasense",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "news": {
+      "0.1.1": {
+        "en": "Checker fixes: Node.js 22, i18n for the admin UI, responsive sizes, trusted publishing workflow",
+        "de": "Checker-Korrekturen: Node.js 22, i18n für die Admin-Oberfläche, responsive Größen, Trusted-Publishing-Workflow",
+        "ru": "Исправления по чекеру: Node.js 22, i18n для панели администратора, адаптивные размеры, рабочий процесс доверенной публикации",
+        "pt": "Correções do verificador: Node.js 22, i18n para a interface de administração, tamanhos responsivos, fluxo de publicação confiável",
+        "nl": "Checker-fixes: Node.js 22, i18n voor de beheer-UI, responsieve groottes, trusted-publishing-workflow",
+        "fr": "Corrections du vérificateur : Node.js 22, i18n pour l'interface d'administration, tailles responsives, flux de publication de confiance",
+        "it": "Correzioni del checker: Node.js 22, i18n per l'interfaccia di amministrazione, dimensioni responsive, flusso di pubblicazione attendibile",
+        "es": "Correcciones del verificador: Node.js 22, i18n para la interfaz de administración, tamaños adaptables, flujo de publicación de confianza",
+        "pl": "Poprawki checkera: Node.js 22, i18n dla panelu administracyjnego, rozmiary responsywne, zaufany proces publikacji",
+        "uk": "Виправлення за чекером: Node.js 22, i18n для панелі адміністратора, адаптивні розміри, довірений процес публікації",
+        "zh-cn": "检查器修复：Node.js 22、管理界面 i18n、响应式尺寸、可信发布工作流"
+      },
       "0.1.0": {
         "en": "First release: first look and hourly agronomy as states; optional forwarding of a station from ioBroker to NuaSense",
         "de": "Erste Version: Erster Blick und stündliche Agronomie als States; optional Weiterleitung einer Station von ioBroker zu NuaSense",
@@ -43,8 +56,18 @@
       "uk": "Що ваша метеостанція означає для вашої культури: нічний мінімум і заморозки, наступне вікно обприскування, ET0, зволоження листя. Необов'язкове пересилання станції з ioBroker до NuaSense.",
       "zh-cn": "您的气象站对作物意味着什么：今夜最低温与霜冻、下一个喷药窗口、ET0、叶面湿润。可选将气象站从 ioBroker 转发到 NuaSense。"
     },
-    "authors": ["NuaSense <manuel@nuasense.com>"],
-    "keywords": ["weather", "weather station", "agriculture", "frost", "spray", "evapotranspiration", "nuasense"],
+    "authors": [
+      "NuaSense <manuel@nuasense.com>"
+    ],
+    "keywords": [
+      "weather",
+      "weather station",
+      "agriculture",
+      "frost",
+      "spray",
+      "evapotranspiration",
+      "nuasense"
+    ],
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
@@ -66,12 +89,12 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=5.0.19"
+        "js-controller": ">=6.0.11"
       }
     ],
     "globalDependencies": [
       {
-        "admin": ">=6.17.14"
+        "admin": ">=7.6.20"
       }
     ]
   },
@@ -95,8 +118,14 @@
     "solarState": "",
     "luxState": ""
   },
-  "protectedNative": ["apiKey", "forwardToken"],
-  "encryptedNative": ["apiKey", "forwardToken"],
+  "protectedNative": [
+    "apiKey",
+    "forwardToken"
+  ],
+  "encryptedNative": [
+    "apiKey",
+    "forwardToken"
+  ],
   "objects": [],
   "instanceObjects": [
     {
