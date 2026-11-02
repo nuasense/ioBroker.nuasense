@@ -1,0 +1,93 @@
+{
+  "i18n": false,
+  "type": "tabs",
+  "items": {
+    "read": {
+      "type": "panel",
+      "label": { "en": "Read from NuaSense", "de": "Von NuaSense lesen" },
+      "items": {
+        "intro": {
+          "type": "staticText",
+          "text": { "en": "An API key from platform.nuasense.com → API Keys, with the ingest:write scope (it is also what reads your own stations). Leave empty if you only want to forward a station.", "de": "Ein API-Key von platform.nuasense.com → API Keys mit dem Scope ingest:write (er liest auch die eigenen Stationen). Leer lassen, wenn nur eine Station weitergeleitet werden soll." },
+          "newLine": true
+        },
+        "apiKey": {
+          "type": "password",
+          "label": { "en": "API key", "de": "API-Key" },
+          "newLine": true,
+          "sm": 12, "md": 8
+        },
+        "stationId": {
+          "type": "text",
+          "label": { "en": "Station id (empty = all stations on the account)", "de": "Station-ID (leer = alle Stationen des Kontos)" },
+          "newLine": true,
+          "sm": 12, "md": 8
+        },
+        "pollMinutes": {
+          "type": "number",
+          "label": { "en": "Read every (minutes)", "de": "Lesen alle (Minuten)" },
+          "min": 5, "max": 240,
+          "newLine": true,
+          "sm": 6, "md": 3
+        },
+        "baseUrl": {
+          "type": "text",
+          "label": { "en": "API address", "de": "API-Adresse" },
+          "newLine": true,
+          "sm": 12, "md": 8
+        }
+      }
+    },
+    "send": {
+      "type": "panel",
+      "label": { "en": "Forward a station to NuaSense", "de": "Station an NuaSense weiterleiten" },
+      "items": {
+        "intro2": {
+          "type": "staticText",
+          "text": { "en": "In the NuaSense console: External stations → Add a station → pick 'Home Assistant / weewx / Meteobridge / Node-RED'. The last screen shows a path like /station/kw7n-4hpd-x2vt; the part after /station/ is the token. Then pick the ioBroker states that hold your station's values; missing ones are simply not sent.", "de": "In der NuaSense-Konsole: External stations → Add a station → «Home Assistant / weewx / Meteobridge / Node-RED» wählen. Der letzte Schritt zeigt einen Pfad wie /station/kw7n-4hpd-x2vt; der Teil nach /station/ ist der Token. Dann die ioBroker-States wählen, die die Werte der Station halten; fehlende werden einfach nicht gesendet." },
+          "newLine": true
+        },
+        "forwardEnabled": {
+          "type": "checkbox",
+          "label": { "en": "Forward a station", "de": "Station weiterleiten" },
+          "newLine": true
+        },
+        "forwardToken": {
+          "type": "password",
+          "label": { "en": "Station token", "de": "Station-Token" },
+          "newLine": true,
+          "sm": 12, "md": 6
+        },
+        "forwardDeviceId": {
+          "type": "text",
+          "label": { "en": "Device id (any text; keep it stable)", "de": "Geräte-ID (beliebiger Text; stabil lassen)" },
+          "sm": 12, "md": 6
+        },
+        "forwardServer": {
+          "type": "text",
+          "label": { "en": "Receiver", "de": "Empfänger" },
+          "newLine": true,
+          "sm": 12, "md": 6
+        },
+        "temperatureState": { "type": "objectId", "label": { "en": "Temperature (°C)", "de": "Temperatur (°C)" }, "newLine": true, "sm": 12, "md": 6 },
+        "humidityState": { "type": "objectId", "label": { "en": "Humidity (%)", "de": "Luftfeuchte (%)" }, "sm": 12, "md": 6 },
+        "pressureState": { "type": "objectId", "label": { "en": "Pressure, station level (hPa)", "de": "Luftdruck, Stationshöhe (hPa)" }, "newLine": true, "sm": 12, "md": 6 },
+        "windSpeedState": { "type": "objectId", "label": { "en": "Wind speed", "de": "Windgeschwindigkeit" }, "sm": 12, "md": 4 },
+        "windUnit": {
+          "type": "select",
+          "label": { "en": "Wind unit", "de": "Windeinheit" },
+          "options": [
+            { "label": "m/s", "value": "ms" },
+            { "label": "km/h", "value": "kmh" }
+          ],
+          "sm": 12, "md": 2
+        },
+        "windGustState": { "type": "objectId", "label": { "en": "Wind gusts", "de": "Windböen" }, "newLine": true, "sm": 12, "md": 6 },
+        "windDirectionState": { "type": "objectId", "label": { "en": "Wind direction (°)", "de": "Windrichtung (°)" }, "sm": 12, "md": 6 },
+        "rainTotalState": { "type": "objectId", "label": { "en": "Rain total (mm, a counter that only grows)", "de": "Regen gesamt (mm, ein Zähler, der nur wächst)" }, "newLine": true, "sm": 12, "md": 6 },
+        "solarState": { "type": "objectId", "label": { "en": "Solar radiation (W/m²)", "de": "Globalstrahlung (W/m²)" }, "sm": 12, "md": 6 },
+        "luxState": { "type": "objectId", "label": { "en": "Light (lux), if no W/m²", "de": "Licht (Lux), falls kein W/m²" }, "newLine": true, "sm": 12, "md": 6 }
+      }
+    }
+  }
+}

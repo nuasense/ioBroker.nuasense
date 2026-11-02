@@ -1,0 +1,57 @@
+{
+  "name": "iobroker.nuasense",
+  "version": "0.1.0",
+  "description": "NuaSense for ioBroker: what your weather station means for your crop (tonight's low, frost, spray window, ET0, leaf wetness), and optionally forward a station from ioBroker to NuaSense",
+  "author": {
+    "name": "NuaSense",
+    "email": "manuel@nuasense.com"
+  },
+  "homepage": "https://github.com/nuasense/ioBroker.nuasense",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "nuasense",
+    "weather",
+    "weather-station",
+    "agriculture",
+    "frost",
+    "spray",
+    "evapotranspiration",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuasense/ioBroker.nuasense.git"
+  },
+  "engines": {
+    "node": ">= 18"
+  },
+  "dependencies": {
+    "@iobroker/adapter-core": "^3.2.3"
+  },
+  "devDependencies": {
+    "@iobroker/testing": "^5.0.4",
+    "chai": "^4.5.0",
+    "mocha": "^10.8.2"
+  },
+  "main": "main.js",
+  "files": [
+    "admin/",
+    "lib/",
+    "io-package.json",
+    "LICENSE",
+    "main.js"
+  ],
+  "scripts": {
+    "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
+    "test:package": "mocha test/package --exit",
+    "test:unit": "mocha test/unit --exit",
+    "test": "npm run test:js && npm run test:package",
+    "release": "echo release via GitHub"
+  },
+  "bugs": {
+    "url": "https://github.com/nuasense/ioBroker.nuasense/issues"
+  },
+  "readmeFilename": "README.md"
+}

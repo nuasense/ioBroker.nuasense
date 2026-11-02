@@ -1,0 +1,37 @@
+name: Test and Release
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*"
+  pull_request: {}
+
+jobs:
+  check-and-lint:
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - run: npm ci
+      - run: npm run test:package
+
+  adapter-tests:
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    needs: [check-and-lint]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run test:unit

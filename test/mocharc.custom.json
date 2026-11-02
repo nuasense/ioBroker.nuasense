@@ -1,0 +1,4 @@
+{
+  "require": [],
+  "watch-files": ["!(node_modules|test)/**", "*.js"]
+}

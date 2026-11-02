@@ -1,0 +1,158 @@
+{
+  "common": {
+    "name": "nuasense",
+    "version": "0.1.0",
+    "news": {
+      "0.1.0": {
+        "en": "First release: first look and hourly agronomy as states; optional forwarding of a station from ioBroker to NuaSense",
+        "de": "Erste Version: Erster Blick und stündliche Agronomie als States; optional Weiterleitung einer Station von ioBroker zu NuaSense",
+        "ru": "Первый выпуск: прогноз на ночь и почасовая агрономия как состояния; опциональная пересылка станции из ioBroker в NuaSense",
+        "pt": "Primeira versão: primeira olhada e agronomia horária como estados; encaminhamento opcional de uma estação do ioBroker para o NuaSense",
+        "nl": "Eerste versie: eerste blik en uurlijkse agronomie als states; optioneel doorsturen van een station van ioBroker naar NuaSense",
+        "fr": "Première version : premier aperçu et agronomie horaire sous forme d'états ; transfert optionnel d'une station d'ioBroker vers NuaSense",
+        "it": "Prima versione: prima occhiata e agronomia oraria come stati; inoltro opzionale di una stazione da ioBroker a NuaSense",
+        "es": "Primera versión: primer vistazo y agronomía horaria como estados; reenvío opcional de una estación de ioBroker a NuaSense",
+        "pl": "Pierwsze wydanie: pierwszy rzut oka i godzinowa agronomia jako stany; opcjonalne przekazywanie stacji z ioBroker do NuaSense",
+        "uk": "Перший випуск: перший погляд і погодинна агрономія як стани; необов'язкове пересилання станції з ioBroker до NuaSense",
+        "zh-cn": "首个版本：夜间预览和每小时农艺数据作为状态；可选将气象站从 ioBroker 转发到 NuaSense"
+      }
+    },
+    "titleLang": {
+      "en": "NuaSense",
+      "de": "NuaSense",
+      "ru": "NuaSense",
+      "pt": "NuaSense",
+      "nl": "NuaSense",
+      "fr": "NuaSense",
+      "it": "NuaSense",
+      "es": "NuaSense",
+      "pl": "NuaSense",
+      "uk": "NuaSense",
+      "zh-cn": "NuaSense"
+    },
+    "desc": {
+      "en": "What your weather station means for your crop: tonight's low and frost, the next spray window, ET0, leaf wetness, spray quality. Optionally forwards a station from ioBroker to NuaSense.",
+      "de": "Was deine Wetterstation für deine Kultur bedeutet: Tief und Frost heute Nacht, das nächste Spritzfenster, ET0, Blattnässe, Spritzqualität. Optional Weiterleitung einer Station von ioBroker zu NuaSense.",
+      "ru": "Что ваша метеостанция значит для вашей культуры: ночной минимум и заморозки, следующее окно для опрыскивания, ET0, увлажнение листьев. Опционально пересылает станцию из ioBroker в NuaSense.",
+      "pt": "O que a sua estação meteorológica significa para a sua cultura: mínima e geada desta noite, próxima janela de pulverização, ET0, molhamento foliar. Opcionalmente encaminha uma estação do ioBroker para o NuaSense.",
+      "nl": "Wat je weerstation betekent voor je gewas: minimum en vorst vannacht, het volgende spuitvenster, ET0, bladnat. Optioneel doorsturen van een station van ioBroker naar NuaSense.",
+      "fr": "Ce que votre station météo signifie pour votre culture : minimum et gel de la nuit, prochaine fenêtre de pulvérisation, ET0, humectation foliaire. Transfert optionnel d'une station d'ioBroker vers NuaSense.",
+      "it": "Cosa significa la tua stazione meteo per la tua coltura: minima e gelo stanotte, prossima finestra di irrorazione, ET0, bagnatura fogliare. Inoltro opzionale di una stazione da ioBroker a NuaSense.",
+      "es": "Lo que su estación meteorológica significa para su cultivo: mínima y helada de esta noche, próxima ventana de pulverización, ET0, mojado foliar. Reenvío opcional de una estación de ioBroker a NuaSense.",
+      "pl": "Co Twoja stacja pogodowa oznacza dla Twojej uprawy: nocne minimum i przymrozek, następne okno oprysku, ET0, zwilżenie liści. Opcjonalne przekazywanie stacji z ioBroker do NuaSense.",
+      "uk": "Що ваша метеостанція означає для вашої культури: нічний мінімум і заморозки, наступне вікно обприскування, ET0, зволоження листя. Необов'язкове пересилання станції з ioBroker до NuaSense.",
+      "zh-cn": "您的气象站对作物意味着什么：今夜最低温与霜冻、下一个喷药窗口、ET0、叶面湿润。可选将气象站从 ioBroker 转发到 NuaSense。"
+    },
+    "authors": ["NuaSense <manuel@nuasense.com>"],
+    "keywords": ["weather", "weather station", "agriculture", "frost", "spray", "evapotranspiration", "nuasense"],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "nuasense.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/nuasense/ioBroker.nuasense/main/admin/nuasense.png",
+    "readme": "https://github.com/nuasense/ioBroker.nuasense/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "mode": "daemon",
+    "type": "weather",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=5.0.19"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.17.14"
+      }
+    ]
+  },
+  "native": {
+    "apiKey": "",
+    "baseUrl": "https://api.nuasense.com",
+    "stationId": "",
+    "pollMinutes": 15,
+    "forwardEnabled": false,
+    "forwardToken": "",
+    "forwardServer": "ingest.nuasense.com",
+    "forwardDeviceId": "",
+    "temperatureState": "",
+    "humidityState": "",
+    "pressureState": "",
+    "windSpeedState": "",
+    "windUnit": "ms",
+    "windGustState": "",
+    "windDirectionState": "",
+    "rainTotalState": "",
+    "solarState": "",
+    "luxState": ""
+  },
+  "protectedNative": ["apiKey", "forwardToken"],
+  "encryptedNative": ["apiKey", "forwardToken"],
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "NuaSense reachable with this API key",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "forward",
+      "type": "channel",
+      "common": {
+        "name": "Forwarding a station to NuaSense"
+      },
+      "native": {}
+    },
+    {
+      "_id": "forward.lastSentAt",
+      "type": "state",
+      "common": {
+        "role": "date",
+        "name": "Last upload sent to NuaSense",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "forward.lastStatus",
+      "type": "state",
+      "common": {
+        "role": "text",
+        "name": "Receiver's answer to the last upload",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    }
+  ]
+}
