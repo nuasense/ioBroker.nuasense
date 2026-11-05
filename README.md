@@ -9,21 +9,21 @@
 
 ## NuaSense adapter for ioBroker
 
-What your weather station means for your crop, as ioBroker states — and, if you like, your station forwarded from ioBroker to NuaSense.
-
-[NuaSense](https://nuasense.com) computes the agronomy on a weather station of any brand: tonight's low and whether it is a frost night, the next calm dry daylight window for spraying, whether the latest reading is plausible against the model, and the hourly values — ET0, leaf wetness, spray quality, VPD, delta T. The first three stations on an account connect free.
+What your weather station means for your house and garden, as ioBroker states — and, if you like, your station forwarded from ioBroker to NuaSense. The first three stations on a NuaSense account connect free.
 
 ### Read
 
-Make an API key in the NuaSense console under **API Keys** (scope `ingest:write`; despite the name it is what reads your own stations) and put it into the adapter. Every 15 minutes (configurable) the adapter writes, per station:
+Make an API key in the NuaSense console under **API Keys** (scope `ingest:write`; it is what reads your own stations), put it into the adapter, and tell it what the garden mostly is (lawn, vegetables, flower beds and shrubs) and your sprinkler's rate in mm per hour (pop-up sprinkler about 10, drip line 2–4; 0 for millimetres only). Every 15 minutes (configurable) the adapter writes, per station:
 
 | state | meaning |
 |---|---|
-| `tonight.low`, `tonight.at`, `tonight.frost`, `tonight.grassLow` | the coming night: low in °C, when, `none` / `watch` / `frost`, grass-level estimate |
-| `spray.window`, `spray.date`, `spray.windMax`, `spray.reason` | the next calm dry window, e.g. `07:00–14:00`, or why there is none |
-| `check.verdict`, `check.reading`, `check.model`, `check.difference` | latest reading against the model for that hour: `plausible`, `check`, `off` |
-| `hourly.et0`, `hourly.leafWetnessHours`, `hourly.sprayQuality`, `hourly.sprayIndex`, `hourly.sprayLimit`, `hourly.vpd`, `hourly.deltaT`, `hourly.temperature`, `hourly.humidity`, `hourly.pressure` | the latest hourly agronomy |
+| `tonight.low`, `tonight.at`, `tonight.frost`, `tonight.grassLow` | the coming night: low in °C, when, `none` / `watch` (grass level may freeze: pots in) / `frost`, grass-level estimate |
+| `garden.wateringMm`, `garden.wateringMinutes` | what the garden needs today — evaporation minus the rain of the last 24 h and the rain forecast for the next 24 h; `0` means skip. Minutes at your sprinkler's rate, ready for a script that opens a valve once a day |
+| `garden.rainNext24h`, `garden.rainLast24h`, `garden.et0`, `garden.et0Source` | the figures behind it; ET0 comes from your own station once it has a day of data, from the forecast before |
+| `plausibility.verdict`, `.reading`, `.model`, `.difference` | your latest reading against the forecast model for that hour: `plausible`, or `implausible` when they differ by more than 5 °C (a wrong unit, a sensor indoors) — no cause is guessed |
 | `lastUpload`, `device` | when the station last sent, and from what |
+
+**Advanced** (a checkbox) adds the agronomy values for farms, vineyards and nurseries: `spray.*` (next calm dry window) and `hourly.*` (ET0 per hour, leaf-wetness hours, spray quality, VPD, delta T, hourly means).
 
 `info.connection` says whether NuaSense answered with this key.
 
@@ -46,6 +46,9 @@ When you connect a station, NuaSense stores its readings and computes your forec
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### 0.2.0 (2026-11-05)
+* (NuaSense) house & garden first: frost tonight, watering today in mm and minutes, rain next 24 h, plausibility; agronomy values behind Advanced
+
 ### 0.1.1 (2026-11-03)
 * (NuaSense) checker fixes: Node.js 22, i18n for the admin UI, responsive sizes, trusted-publishing workflow, node:crypto
 

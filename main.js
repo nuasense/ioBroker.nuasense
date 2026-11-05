@@ -23,6 +23,8 @@ const { toEcowitt, encodeForm, uploadUrl } = require("./lib/ecowitt");
 
 const FORWARD_EVERY_MS = 60_000;
 const MIN_POLL_MINUTES = 5;
+// What the garden mostly is; the API returns watering for all three.
+const PLANTS = ["lawn", "vegetables", "beds"];
 
 class Nuasense extends utils.Adapter {
   /** @param {Partial<utils.AdapterOptions>} [options] */
@@ -164,8 +166,10 @@ class Nuasense extends utils.Adapter {
       }
     }
     const t = (look && look.tonight) || {};
-    const s = (look && look.spray) || {};
-    const c = (look && look.station_check) || {};
+    const c = (look && (look.plausibility || look.station_check)) || {};
+    const w = (look && look.garden && look.garden.watering) || {};
+
+    // --- house & garden: every station ---------------------------------------
     await this.put(`${id}.tonight.low`, numOrNull(t.low_c), {
       name: "Tonight's low",
       type: "number",
@@ -188,10 +192,92 @@ class Nuasense extends utils.Adapter {
       role: "value.temperature",
       unit: "°C",
     });
+
+    const plant = PLANTS.includes(this.config.plant)
+      ? this.config.plant
+      : "lawn";
+    const needMm =
+      w.need_mm && typeof w.need_mm === "object"
+        ? numOrNull(w.need_mm[plant])
+        : null;
+    const rate = Number(this.config.sprinklerRate) || 0;
+    await this.put(`${id}.garden.wateringMm`, needMm, {
+      name: `Watering today (${plant})`,
+      type: "number",
+      role: "value",
+      unit: "mm",
+    });
+    await this.put(
+      `${id}.garden.wateringMinutes`,
+      needMm !== null && rate > 0 ? Math.round((needMm / rate) * 60) : null,
+      {
+        name: "Watering time today at the sprinkler rate",
+        type: "number",
+        role: "value",
+        unit: "min",
+      },
+    );
+    await this.put(`${id}.garden.rainNext24h`, numOrNull(w.rain_next_24h_mm), {
+      name: "Rain forecast, next 24 h",
+      type: "number",
+      role: "value.precipitation.forecast",
+      unit: "mm",
+    });
+    await this.put(`${id}.garden.rainLast24h`, numOrNull(w.rain_last_24h_mm), {
+      name: "Rain measured by the station, last 24 h",
+      type: "number",
+      role: "value.precipitation",
+      unit: "mm",
+    });
+    await this.put(`${id}.garden.et0`, numOrNull(w.et0_mm), {
+      name: "Evaporation today (ET0)",
+      type: "number",
+      role: "value",
+      unit: "mm",
+    });
+    await this.put(`${id}.garden.et0Source`, w.et0_source || null, {
+      name: "ET0 from: station or forecast",
+      type: "string",
+      role: "text",
+    });
+
+    await this.put(`${id}.plausibility.verdict`, c.verdict || null, {
+      name: "Plausibility: plausible or implausible",
+      type: "string",
+      role: "text",
+    });
+    await this.put(`${id}.plausibility.reading`, numOrNull(c.reading_c), {
+      name: "Latest reading",
+      type: "number",
+      role: "value.temperature",
+      unit: "°C",
+    });
+    await this.put(`${id}.plausibility.model`, numOrNull(c.model_c), {
+      name: "Forecast model for that hour",
+      type: "number",
+      role: "value.temperature",
+      unit: "°C",
+    });
+    await this.put(`${id}.plausibility.difference`, numOrNull(c.diff_c), {
+      name: "Reading minus model",
+      type: "number",
+      role: "value",
+      unit: "K",
+    });
+
+    // --- agronomy: only with "advanced" ----------------------------------------
+    if (!this.config.advanced) {
+      return;
+    }
+    const s = (look && look.spray) || {};
     await this.put(
       `${id}.spray.window`,
       s.window ? `${s.window.from}–${s.window.to}` : s.date ? "none" : null,
-      { name: "Next spray window", type: "string", role: "text" },
+      {
+        name: "Next spray window",
+        type: "string",
+        role: "text",
+      },
     );
     await this.put(`${id}.spray.date`, s.date || null, {
       name: "Day of the spray window",
@@ -209,29 +295,6 @@ class Nuasense extends utils.Adapter {
       type: "string",
       role: "text",
     });
-    await this.put(`${id}.check.verdict`, c.verdict || null, {
-      name: "Station check: plausible, check, off",
-      type: "string",
-      role: "text",
-    });
-    await this.put(`${id}.check.reading`, numOrNull(c.reading_c), {
-      name: "Latest reading",
-      type: "number",
-      role: "value.temperature",
-      unit: "°C",
-    });
-    await this.put(`${id}.check.model`, numOrNull(c.model_c), {
-      name: "Model for that hour",
-      type: "number",
-      role: "value.temperature",
-      unit: "°C",
-    });
-    await this.put(`${id}.check.difference`, numOrNull(c.diff_c), {
-      name: "Reading minus model",
-      type: "number",
-      role: "value",
-      unit: "K",
-    });
 
     let row = null;
     try {
@@ -243,72 +306,96 @@ class Nuasense extends utils.Adapter {
       this.log.debug(`derived values for ${station.station_id}: ${e.message}`);
     }
     const r = row || {};
-    await this.put(`${id}.hourly.time`, r.time || null, {
-      name: "Hour of these values",
-      type: "string",
-      role: "date",
-    });
-    await this.put(`${id}.hourly.et0`, numOrNull(r.et0_hour), {
-      name: "ET0 in the hour",
-      type: "number",
-      role: "value",
-      unit: "mm",
-    });
-    await this.put(
-      `${id}.hourly.leafWetnessHours`,
-      numOrNull(r.lwd_consecutive_hours),
-      {
-        name: "Consecutive wet-leaf hours",
-        type: "number",
-        role: "value",
-        unit: "h",
-      },
-    );
-    await this.put(`${id}.hourly.sprayQuality`, r.spray_quality_label || null, {
-      name: "Spray quality",
-      type: "string",
-      role: "text",
-    });
-    await this.put(
-      `${id}.hourly.sprayIndex`,
-      numOrNull(r.spray_quality_index),
-      { name: "Spray quality index", type: "number", role: "value" },
-    );
-    await this.put(`${id}.hourly.sprayLimit`, r.spray_limiting_factor || null, {
-      name: "What limits spraying",
-      type: "string",
-      role: "text",
-    });
-    await this.put(`${id}.hourly.vpd`, numOrNull(r.vpd), {
-      name: "Vapour pressure deficit",
-      type: "number",
-      role: "value",
-      unit: "kPa",
-    });
-    await this.put(`${id}.hourly.deltaT`, numOrNull(r.delta_t), {
-      name: "Delta T",
-      type: "number",
-      role: "value.temperature",
-      unit: "°C",
-    });
-    await this.put(`${id}.hourly.temperature`, numOrNull(r.temperature), {
-      name: "Temperature, hourly mean",
-      type: "number",
-      role: "value.temperature",
-      unit: "°C",
-    });
-    await this.put(`${id}.hourly.humidity`, numOrNull(r.humidity), {
-      name: "Humidity, hourly mean",
-      type: "number",
-      role: "value.humidity",
-      unit: "%",
-    });
-    await this.put(`${id}.hourly.pressure`, numOrNull(r.pressure), {
-      name: "Pressure, hourly mean",
-      type: "number",
-      role: "value.pressure",
-      unit: "hPa",
-    });
+    const hourly = [
+      [
+        "time",
+        r.time || null,
+        { name: "Hour of these values", type: "string", role: "date" },
+      ],
+      [
+        "et0",
+        numOrNull(r.et0_hour),
+        { name: "ET0 in the hour", type: "number", role: "value", unit: "mm" },
+      ],
+      [
+        "leafWetnessHours",
+        numOrNull(r.lwd_consecutive_hours),
+        {
+          name: "Consecutive wet-leaf hours",
+          type: "number",
+          role: "value",
+          unit: "h",
+        },
+      ],
+      [
+        "sprayQuality",
+        r.spray_quality_label || null,
+        { name: "Spray quality", type: "string", role: "text" },
+      ],
+      [
+        "sprayIndex",
+        numOrNull(r.spray_quality_index),
+        { name: "Spray quality index", type: "number", role: "value" },
+      ],
+      [
+        "sprayLimit",
+        r.spray_limiting_factor || null,
+        { name: "What limits spraying", type: "string", role: "text" },
+      ],
+      [
+        "vpd",
+        numOrNull(r.vpd),
+        {
+          name: "Vapour pressure deficit",
+          type: "number",
+          role: "value",
+          unit: "kPa",
+        },
+      ],
+      [
+        "deltaT",
+        numOrNull(r.delta_t),
+        {
+          name: "Delta T",
+          type: "number",
+          role: "value.temperature",
+          unit: "°C",
+        },
+      ],
+      [
+        "temperature",
+        numOrNull(r.temperature),
+        {
+          name: "Temperature, hourly mean",
+          type: "number",
+          role: "value.temperature",
+          unit: "°C",
+        },
+      ],
+      [
+        "humidity",
+        numOrNull(r.humidity),
+        {
+          name: "Humidity, hourly mean",
+          type: "number",
+          role: "value.humidity",
+          unit: "%",
+        },
+      ],
+      [
+        "pressure",
+        numOrNull(r.pressure),
+        {
+          name: "Pressure, hourly mean",
+          type: "number",
+          role: "value.pressure",
+          unit: "hPa",
+        },
+      ],
+    ];
+    for (const [key, value, common] of hourly) {
+      await this.put(`${id}.hourly.${key}`, value, common);
+    }
   }
 
   /** Create the state if needed, then write it acknowledged. */
@@ -365,7 +452,7 @@ class Nuasense extends utils.Adapter {
     };
     const fields = toEcowitt(reading, {
       deviceId: cfg.forwardDeviceId || `iobroker-${this.namespace}`,
-      stationType: "iobroker.nuasense_V0.1.1",
+      stationType: "iobroker.nuasense_V0.2.0",
     });
     if (Object.keys(fields).length <= 3) {
       // PASSKEY, stationtype, dateutc and nothing else: no mapped state had a value.

@@ -22,5 +22,11 @@
   "Solar radiation (W/m²)": "Radiazione solare (W/m²)",
   "Light (lux), if no W/m²": "Luce (lux), se non ci sono W/m²",
   "m/s": "m/s",
-  "km/h": "km/h"
+  "km/h": "km/h",
+  "The garden is mostly": "Il giardino è soprattutto",
+  "Lawn": "Prato",
+  "Vegetables": "Ortaggi",
+  "Flower beds and shrubs": "Aiuole e arbusti",
+  "Sprinkler rate (mm per hour; 0 = only mm)": "Portata dell'irrigatore (mm all'ora; 0 = solo mm)",
+  "Advanced: agronomy values (spray window, ET0 per hour, leaf wetness, VPD, delta T)": "Avanzate: valori agronomici (finestra di irrorazione, ET0 orario, bagnatura fogliare, VPD, delta T)"
 }

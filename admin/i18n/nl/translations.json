@@ -22,5 +22,11 @@
   "Solar radiation (W/m²)": "Zonnestraling (W/m²)",
   "Light (lux), if no W/m²": "Licht (lux), als er geen W/m² is",
   "m/s": "m/s",
-  "km/h": "km/u"
+  "km/h": "km/u",
+  "The garden is mostly": "De tuin is vooral",
+  "Lawn": "Gazon",
+  "Vegetables": "Groenten",
+  "Flower beds and shrubs": "Borders en struiken",
+  "Sprinkler rate (mm per hour; 0 = only mm)": "Sproeiercapaciteit (mm per uur; 0 = alleen mm)",
+  "Advanced: agronomy values (spray window, ET0 per hour, leaf wetness, VPD, delta T)": "Geavanceerd: agronomische waarden (spuitvenster, ET0 per uur, bladnat, VPD, delta T)"
 }

@@ -10,32 +10,99 @@
           "type": "staticText",
           "text": "An API key from platform.nuasense.com, API Keys, with the ingest:write scope. Leave empty if you only want to forward a station.",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "apiKey": {
           "type": "password",
           "label": "API key",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 8, "lg": 6, "xl": 6
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 6,
+          "xl": 6
         },
         "stationId": {
           "type": "text",
           "label": "Station id (empty = all stations on the account)",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 8, "lg": 6, "xl": 6
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 6,
+          "xl": 6
+        },
+        "plant": {
+          "type": "select",
+          "label": "The garden is mostly",
+          "options": [
+            {
+              "label": "Lawn",
+              "value": "lawn"
+            },
+            {
+              "label": "Vegetables",
+              "value": "vegetables"
+            },
+            {
+              "label": "Flower beds and shrubs",
+              "value": "beds"
+            }
+          ],
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 4,
+          "lg": 3,
+          "xl": 3
+        },
+        "sprinklerRate": {
+          "type": "number",
+          "label": "Sprinkler rate (mm per hour; 0 = only mm)",
+          "min": 0,
+          "max": 100,
+          "step": 0.5,
+          "xs": 12,
+          "sm": 12,
+          "md": 4,
+          "lg": 3,
+          "xl": 3
+        },
+        "advanced": {
+          "type": "checkbox",
+          "label": "Advanced: agronomy values (spray window, ET0 per hour, leaf wetness, VPD, delta T)",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 6,
+          "xl": 6
         },
         "pollMinutes": {
           "type": "number",
           "label": "Read every (minutes)",
-          "min": 5, "max": 240,
+          "min": 5,
+          "max": 240,
           "newLine": true,
-          "xs": 12, "sm": 6, "md": 3, "lg": 2, "xl": 2
+          "xs": 12,
+          "sm": 6,
+          "md": 3,
+          "lg": 2,
+          "xl": 2
         },
         "baseUrl": {
           "type": "text",
           "label": "API address",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 8, "lg": 6, "xl": 6
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 6,
+          "xl": 6
         }
       }
     },
@@ -47,49 +114,156 @@
           "type": "staticText",
           "text": "In the NuaSense console: External stations, Add a station, pick Home Assistant / weewx / Meteobridge / Node-RED. The last screen shows a path like /station/kw7n-4hpd-x2vt; the part after /station/ is the token. Then pick the ioBroker states that hold your station's values; missing ones are simply not sent.",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "forwardEnabled": {
           "type": "checkbox",
           "label": "Forward a station",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
         },
         "forwardToken": {
           "type": "password",
           "label": "Station token",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
         },
         "forwardDeviceId": {
           "type": "text",
           "label": "Device id (any text; keep it stable)",
-          "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
         },
         "forwardServer": {
           "type": "text",
           "label": "Receiver",
           "newLine": true,
-          "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
         },
-        "temperatureState": { "type": "objectId", "label": "Temperature (°C)", "newLine": true, "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "humidityState": { "type": "objectId", "label": "Humidity (%)", "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "pressureState": { "type": "objectId", "label": "Pressure at station level (hPa)", "newLine": true, "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "windSpeedState": { "type": "objectId", "label": "Wind speed", "xs": 12, "sm": 12, "md": 4, "lg": 3, "xl": 3 },
+        "temperatureState": {
+          "type": "objectId",
+          "label": "Temperature (°C)",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "humidityState": {
+          "type": "objectId",
+          "label": "Humidity (%)",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "pressureState": {
+          "type": "objectId",
+          "label": "Pressure at station level (hPa)",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "windSpeedState": {
+          "type": "objectId",
+          "label": "Wind speed",
+          "xs": 12,
+          "sm": 12,
+          "md": 4,
+          "lg": 3,
+          "xl": 3
+        },
         "windUnit": {
           "type": "select",
           "label": "Wind unit",
           "options": [
-            { "label": "m/s", "value": "ms" },
-            { "label": "km/h", "value": "kmh" }
+            {
+              "label": "m/s",
+              "value": "ms"
+            },
+            {
+              "label": "km/h",
+              "value": "kmh"
+            }
           ],
-          "xs": 12, "sm": 12, "md": 2, "lg": 1, "xl": 1
+          "xs": 12,
+          "sm": 12,
+          "md": 2,
+          "lg": 1,
+          "xl": 1
         },
-        "windGustState": { "type": "objectId", "label": "Wind gusts", "newLine": true, "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "windDirectionState": { "type": "objectId", "label": "Wind direction (°)", "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "rainTotalState": { "type": "objectId", "label": "Rain total (mm, a counter that only grows)", "newLine": true, "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "solarState": { "type": "objectId", "label": "Solar radiation (W/m²)", "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 },
-        "luxState": { "type": "objectId", "label": "Light (lux), if no W/m²", "newLine": true, "xs": 12, "sm": 12, "md": 6, "lg": 4, "xl": 4 }
+        "windGustState": {
+          "type": "objectId",
+          "label": "Wind gusts",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "windDirectionState": {
+          "type": "objectId",
+          "label": "Wind direction (°)",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "rainTotalState": {
+          "type": "objectId",
+          "label": "Rain total (mm, a counter that only grows)",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "solarState": {
+          "type": "objectId",
+          "label": "Solar radiation (W/m²)",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "luxState": {
+          "type": "objectId",
+          "label": "Light (lux), if no W/m²",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        }
       }
     }
   }

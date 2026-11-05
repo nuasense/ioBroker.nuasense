@@ -22,5 +22,11 @@
   "Solar radiation (W/m²)": "Сонячна радіація (Вт/м²)",
   "Light (lux), if no W/m²": "Освітленість (лк), якщо немає Вт/м²",
   "m/s": "м/с",
-  "km/h": "км/год"
+  "km/h": "км/год",
+  "The garden is mostly": "Сад — це переважно",
+  "Lawn": "Газон",
+  "Vegetables": "Овочі",
+  "Flower beds and shrubs": "Клумби та кущі",
+  "Sprinkler rate (mm per hour; 0 = only mm)": "Інтенсивність дощувача (мм на годину; 0 = лише мм)",
+  "Advanced: agronomy values (spray window, ET0 per hour, leaf wetness, VPD, delta T)": "Розширені: агрономічні значення (вікно обприскування, ET0 за годину, зволоження листя, VPD, delta T)"
 }

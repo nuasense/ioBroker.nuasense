@@ -22,5 +22,11 @@
   "Solar radiation (W/m²)": "太阳辐射（W/m²）",
   "Light (lux), if no W/m²": "光照（lux，无 W/m² 时）",
   "m/s": "m/s",
-  "km/h": "km/h"
+  "km/h": "km/h",
+  "The garden is mostly": "花园主要是",
+  "Lawn": "草坪",
+  "Vegetables": "蔬菜",
+  "Flower beds and shrubs": "花坛与灌木",
+  "Sprinkler rate (mm per hour; 0 = only mm)": "喷头强度（毫米/小时；0 = 仅显示毫米）",
+  "Advanced: agronomy values (spray window, ET0 per hour, leaf wetness, VPD, delta T)": "高级：农艺数值（喷药窗口、每小时 ET0、叶面湿润、VPD、delta T）"
 }

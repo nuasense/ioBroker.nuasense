@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "nuasense",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "news": {
+      "0.2.0": {
+        "en": "House & garden first: frost tonight, watering today in mm and minutes, rain next 24 h, plausibility; agronomy values behind Advanced",
+        "de": "Haus & Garten zuerst: Frost heute Nacht, Giessen heute in mm und Minuten, Regen der nächsten 24 h, Plausibilität; Agronomie-Werte unter «Erweitert»",
+        "ru": "Сначала дом и сад: заморозки ночью, полив сегодня в мм и минутах, дождь за 24 ч, правдоподобность; агрономические значения в разделе «Расширенные»",
+        "pt": "Casa e jardim primeiro: geada esta noite, rega hoje em mm e minutos, chuva nas próximas 24 h, plausibilidade; valores agronómicos em Avançado",
+        "nl": "Huis & tuin eerst: vorst vannacht, water geven vandaag in mm en minuten, regen komende 24 u, plausibiliteit; agronomische waarden onder Geavanceerd",
+        "fr": "Maison et jardin d'abord : gel cette nuit, arrosage du jour en mm et en minutes, pluie des 24 h à venir, plausibilité ; valeurs agronomiques dans Avancé",
+        "it": "Prima casa e giardino: gelo stanotte, irrigazione di oggi in mm e minuti, pioggia nelle prossime 24 h, plausibilità; valori agronomici in Avanzate",
+        "es": "Primero casa y jardín: helada esta noche, riego de hoy en mm y minutos, lluvia en las próximas 24 h, plausibilidad; valores agronómicos en Avanzado",
+        "pl": "Najpierw dom i ogród: przymrozek w nocy, podlewanie dziś w mm i minutach, deszcz w ciągu 24 h, wiarygodność; wartości agronomiczne w Zaawansowanych",
+        "uk": "Спочатку дім і сад: заморозки вночі, полив сьогодні в мм і хвилинах, дощ на 24 год, правдоподібність; агрономічні значення в розділі «Розширені»",
+        "zh-cn": "优先家居与花园：今夜霜冻、今日浇水量（毫米与分钟）、未来 24 小时降雨、合理性；农艺数值放在“高级”中"
+      },
       "0.1.1": {
         "en": "Checker fixes: Node.js 22, i18n for the admin UI, responsive sizes, trusted publishing workflow",
         "de": "Checker-Korrekturen: Node.js 22, i18n für die Admin-Oberfläche, responsive Größen, Trusted-Publishing-Workflow",
@@ -44,17 +57,17 @@
       "zh-cn": "NuaSense"
     },
     "desc": {
-      "en": "What your weather station means for your crop: tonight's low and frost, the next spray window, ET0, leaf wetness, spray quality. Optionally forwards a station from ioBroker to NuaSense.",
-      "de": "Was deine Wetterstation für deine Kultur bedeutet: Tief und Frost heute Nacht, das nächste Spritzfenster, ET0, Blattnässe, Spritzqualität. Optional Weiterleitung einer Station von ioBroker zu NuaSense.",
-      "ru": "Что ваша метеостанция значит для вашей культуры: ночной минимум и заморозки, следующее окно для опрыскивания, ET0, увлажнение листьев. Опционально пересылает станцию из ioBroker в NuaSense.",
-      "pt": "O que a sua estação meteorológica significa para a sua cultura: mínima e geada desta noite, próxima janela de pulverização, ET0, molhamento foliar. Opcionalmente encaminha uma estação do ioBroker para o NuaSense.",
-      "nl": "Wat je weerstation betekent voor je gewas: minimum en vorst vannacht, het volgende spuitvenster, ET0, bladnat. Optioneel doorsturen van een station van ioBroker naar NuaSense.",
-      "fr": "Ce que votre station météo signifie pour votre culture : minimum et gel de la nuit, prochaine fenêtre de pulvérisation, ET0, humectation foliaire. Transfert optionnel d'une station d'ioBroker vers NuaSense.",
-      "it": "Cosa significa la tua stazione meteo per la tua coltura: minima e gelo stanotte, prossima finestra di irrorazione, ET0, bagnatura fogliare. Inoltro opzionale di una stazione da ioBroker a NuaSense.",
-      "es": "Lo que su estación meteorológica significa para su cultivo: mínima y helada de esta noche, próxima ventana de pulverización, ET0, mojado foliar. Reenvío opcional de una estación de ioBroker a NuaSense.",
-      "pl": "Co Twoja stacja pogodowa oznacza dla Twojej uprawy: nocne minimum i przymrozek, następne okno oprysku, ET0, zwilżenie liści. Opcjonalne przekazywanie stacji z ioBroker do NuaSense.",
-      "uk": "Що ваша метеостанція означає для вашої культури: нічний мінімум і заморозки, наступне вікно обприскування, ET0, зволоження листя. Необов'язкове пересилання станції з ioBroker до NuaSense.",
-      "zh-cn": "您的气象站对作物意味着什么：今夜最低温与霜冻、下一个喷药窗口、ET0、叶面湿润。可选将气象站从 ioBroker 转发到 NuaSense。"
+      "en": "What your weather station means for your house and garden: frost tonight, watering today in mm and minutes, rain in the next 24 hours, plausibility of the readings. Optionally forwards a station from ioBroker to NuaSense; agronomy values for farms on request.",
+      "de": "Was deine Wetterstation für Haus und Garten bedeutet: Frost heute Nacht, Giessen heute in mm und Minuten, Regen der nächsten 24 Stunden, Plausibilität der Messwerte. Optional Weiterleitung einer Station von ioBroker zu NuaSense; Agronomie-Werte für Betriebe auf Wunsch.",
+      "ru": "Что ваша метеостанция значит для дома и сада: заморозки ночью, полив сегодня в мм и минутах, дождь в ближайшие 24 часа, правдоподобность показаний. Опционально пересылает станцию из ioBroker в NuaSense; агрономические значения для хозяйств по желанию.",
+      "pt": "O que a sua estação meteorológica significa para a casa e o jardim: geada esta noite, rega hoje em mm e minutos, chuva nas próximas 24 horas, plausibilidade das leituras. Opcionalmente encaminha uma estação do ioBroker para o NuaSense; valores agronómicos para explorações a pedido.",
+      "nl": "Wat je weerstation betekent voor huis en tuin: vorst vannacht, water geven vandaag in mm en minuten, regen in de komende 24 uur, plausibiliteit van de metingen. Optioneel doorsturen van een station van ioBroker naar NuaSense; agronomische waarden voor bedrijven op verzoek.",
+      "fr": "Ce que votre station météo signifie pour la maison et le jardin : gel cette nuit, arrosage du jour en mm et en minutes, pluie des 24 prochaines heures, plausibilité des mesures. Transfert optionnel d'une station d'ioBroker vers NuaSense ; valeurs agronomiques pour les exploitations sur demande.",
+      "it": "Cosa significa la tua stazione meteo per casa e giardino: gelo stanotte, irrigazione di oggi in mm e minuti, pioggia nelle prossime 24 ore, plausibilità delle misure. Inoltro opzionale di una stazione da ioBroker a NuaSense; valori agronomici per le aziende su richiesta.",
+      "es": "Lo que su estación meteorológica significa para la casa y el jardín: helada esta noche, riego de hoy en mm y minutos, lluvia en las próximas 24 horas, plausibilidad de las lecturas. Reenvío opcional de una estación de ioBroker a NuaSense; valores agronómicos para explotaciones bajo demanda.",
+      "pl": "Co Twoja stacja pogodowa oznacza dla domu i ogrodu: przymrozek w nocy, podlewanie dziś w mm i minutach, deszcz w ciągu najbliższych 24 godzin, wiarygodność pomiarów. Opcjonalne przekazywanie stacji z ioBroker do NuaSense; wartości agronomiczne dla gospodarstw na życzenie.",
+      "uk": "Що ваша метеостанція означає для дому й саду: заморозки вночі, полив сьогодні в мм і хвилинах, дощ у найближчі 24 години, правдоподібність вимірювань. Необов'язкове пересилання станції з ioBroker до NuaSense; агрономічні значення для господарств за бажанням.",
+      "zh-cn": "您的气象站对家居与花园意味着什么：今夜霜冻、今日浇水量（毫米与分钟）、未来 24 小时降雨、读数合理性。可选将气象站从 ioBroker 转发到 NuaSense；农场可按需启用农艺数值。"
     },
     "authors": [
       "NuaSense <manuel@nuasense.com>"
@@ -116,7 +129,10 @@
     "windDirectionState": "",
     "rainTotalState": "",
     "solarState": "",
-    "luxState": ""
+    "luxState": "",
+    "plant": "lawn",
+    "sprinklerRate": 10,
+    "advanced": false
   },
   "protectedNative": [
     "apiKey",
