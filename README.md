@@ -46,6 +46,9 @@ When you connect a station, NuaSense stores its readings and computes your forec
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### 0.2.1 (2026-11-05)
+* (NuaSense) checker fixes: workflow and tooling
+
 ### 0.2.0 (2026-11-05)
 * (NuaSense) house & garden first: frost tonight, watering today in mm and minutes, rain next 24 h, plausibility; agronomy values behind Advanced
 

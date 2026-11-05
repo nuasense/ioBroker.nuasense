@@ -26,13 +26,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ioBroker/testing-action-check@v1
+      - uses: ioBroker/testing-action-check@v2
         with:
           node-version: '22.x'
           lint: true
 
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
+    needs: [check-and-lint]
     if: contains(github.event.head_commit.message, '[skip ci]') == false
 
     runs-on: ${{ matrix.os }}
@@ -68,5 +69,5 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           github-token: ${{ secrets.GITHUB_TOKEN }}

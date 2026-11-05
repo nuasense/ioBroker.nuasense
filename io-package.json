@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "nuasense",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "news": {
+      "0.2.1": {
+        "en": "Checker fixes: workflow and tooling",
+        "de": "Checker-Korrekturen: Workflow und Werkzeuge",
+        "ru": "Исправления по чекеру: рабочий процесс и инструменты",
+        "pt": "Correções do verificador: fluxo de trabalho e ferramentas",
+        "nl": "Checker-fixes: workflow en tooling",
+        "fr": "Corrections du vérificateur : flux de travail et outils",
+        "it": "Correzioni del checker: flusso di lavoro e strumenti",
+        "es": "Correcciones del verificador: flujo de trabajo y herramientas",
+        "pl": "Poprawki checkera: proces i narzędzia",
+        "uk": "Виправлення за чекером: робочий процес та інструменти",
+        "zh-cn": "检查器修复：工作流与工具"
+      },
       "0.2.0": {
         "en": "House & garden first: frost tonight, watering today in mm and minutes, rain next 24 h, plausibility; agronomy values behind Advanced",
         "de": "Haus & Garten zuerst: Frost heute Nacht, Giessen heute in mm und Minuten, Regen der nächsten 24 h, Plausibilität; Agronomie-Werte unter «Erweitert»",
@@ -15,19 +28,6 @@
         "pl": "Najpierw dom i ogród: przymrozek w nocy, podlewanie dziś w mm i minutach, deszcz w ciągu 24 h, wiarygodność; wartości agronomiczne w Zaawansowanych",
         "uk": "Спочатку дім і сад: заморозки вночі, полив сьогодні в мм і хвилинах, дощ на 24 год, правдоподібність; агрономічні значення в розділі «Розширені»",
         "zh-cn": "优先家居与花园：今夜霜冻、今日浇水量（毫米与分钟）、未来 24 小时降雨、合理性；农艺数值放在“高级”中"
-      },
-      "0.1.1": {
-        "en": "Checker fixes: Node.js 22, i18n for the admin UI, responsive sizes, trusted publishing workflow",
-        "de": "Checker-Korrekturen: Node.js 22, i18n für die Admin-Oberfläche, responsive Größen, Trusted-Publishing-Workflow",
-        "ru": "Исправления по чекеру: Node.js 22, i18n для панели администратора, адаптивные размеры, рабочий процесс доверенной публикации",
-        "pt": "Correções do verificador: Node.js 22, i18n para a interface de administração, tamanhos responsivos, fluxo de publicação confiável",
-        "nl": "Checker-fixes: Node.js 22, i18n voor de beheer-UI, responsieve groottes, trusted-publishing-workflow",
-        "fr": "Corrections du vérificateur : Node.js 22, i18n pour l'interface d'administration, tailles responsives, flux de publication de confiance",
-        "it": "Correzioni del checker: Node.js 22, i18n per l'interfaccia di amministrazione, dimensioni responsive, flusso di pubblicazione attendibile",
-        "es": "Correcciones del verificador: Node.js 22, i18n para la interfaz de administración, tamaños adaptables, flujo de publicación de confianza",
-        "pl": "Poprawki checkera: Node.js 22, i18n dla panelu administracyjnego, rozmiary responsywne, zaufany proces publikacji",
-        "uk": "Виправлення за чекером: Node.js 22, i18n для панелі адміністратора, адаптивні розміри, довірений процес публікації",
-        "zh-cn": "检查器修复：Node.js 22、管理界面 i18n、响应式尺寸、可信发布工作流"
       },
       "0.1.0": {
         "en": "First release: first look and hourly agronomy as states; optional forwarding of a station from ioBroker to NuaSense",
