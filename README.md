@@ -58,6 +58,8 @@ When you connect a station, NuaSense stores its readings and computes your forec
 ### 0.1.0 (2026-11-03)
 * (NuaSense) first release: first look and hourly agronomy as states; optional forwarding of a station from ioBroker to NuaSense
 
+Older changes: [CHANGELOG_OLD.md](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
