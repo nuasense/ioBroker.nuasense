@@ -20,6 +20,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const { toEcowitt, encodeForm, uploadUrl } = require('./lib/ecowitt');
+const { version } = require('./package.json');
 
 const FORWARD_EVERY_MS = 60_000;
 const MIN_POLL_MINUTES = 5;
@@ -126,11 +127,19 @@ class Nuasense extends utils.Adapter {
 
     async updateStation(station) {
         const id = `stations.${sanitize(station.station_id)}`;
+        await this.setObjectNotExistsAsync('stations', {
+            type: 'folder',
+            common: { name: 'Stations' },
+            native: {},
+        });
         await this.extendObjectAsync(id, {
-            type: 'channel',
+            type: 'device',
             common: { name: station.name || station.station_id },
             native: { station_id: station.station_id },
         });
+        await this.channel(`${id}.tonight`, 'Tonight');
+        await this.channel(`${id}.garden`, 'Garden');
+        await this.channel(`${id}.plausibility`, 'Plausibility');
 
         const push = station.push || {};
         await this.put(`${id}.lastUpload`, push.last_push_at || null, {
@@ -204,7 +213,7 @@ class Nuasense extends utils.Adapter {
         await this.put(`${id}.garden.rainNext24h`, numOrNull(w.rain_next_24h_mm), {
             name: 'Rain forecast, next 24 h',
             type: 'number',
-            role: 'value.precipitation.forecast',
+            role: 'value.precipitation.forecast.0',
             unit: 'mm',
         });
         await this.put(`${id}.garden.rainLast24h`, numOrNull(w.rain_last_24h_mm), {
@@ -253,6 +262,8 @@ class Nuasense extends utils.Adapter {
         if (!this.config.advanced) {
             return;
         }
+        await this.channel(`${id}.spray`, 'Spray window');
+        await this.channel(`${id}.hourly`, 'Hourly agronomy');
         const s = (look && look.spray) || {};
         await this.put(`${id}.spray.window`, s.window ? `${s.window.from}–${s.window.to}` : s.date ? 'none' : null, {
             name: 'Next spray window',
@@ -267,7 +278,7 @@ class Nuasense extends utils.Adapter {
         await this.put(`${id}.spray.windMax`, numOrNull(s.wind_max_ms), {
             name: 'Highest wind in the window',
             type: 'number',
-            role: 'value.speed',
+            role: 'value.speed.max.wind',
             unit: 'm/s',
         });
         await this.put(`${id}.spray.reason`, s.reason || null, {
@@ -366,13 +377,30 @@ class Nuasense extends utils.Adapter {
         }
     }
 
-    /** Create the state if needed, then write it acknowledged. */
+    /** A channel that groups the states below it. */
+    async channel(id, name) {
+        await this.setObjectNotExistsAsync(id, {
+            type: 'channel',
+            common: { name },
+            native: {},
+        });
+    }
+
+    /**
+     * Create the state if needed, then write it acknowledged. With nothing to
+     * report the stored value goes away: null would break the declared type, and
+     * keeping the old value would show yesterday's answer as today's.
+     */
     async put(id, value, common) {
         await this.setObjectNotExistsAsync(id, {
             type: 'state',
             common: { read: true, write: false, ...common },
             native: {},
         });
+        if (value === null || value === undefined) {
+            await this.delStateAsync(id);
+            return;
+        }
         await this.setStateAsync(id, { val: value, ack: true });
     }
 
@@ -420,7 +448,7 @@ class Nuasense extends utils.Adapter {
         };
         const fields = toEcowitt(reading, {
             deviceId: cfg.forwardDeviceId || `iobroker-${this.namespace}`,
-            stationType: 'iobroker.nuasense_V0.2.1',
+            stationType: `iobroker.nuasense_V${version}`,
         });
         if (Object.keys(fields).length <= 3) {
             // PASSKEY, stationtype, dateutc and nothing else: no mapped state had a value.

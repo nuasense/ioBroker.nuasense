@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "nuasense",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "news": {
+      "0.2.2": {
+        "en": "Object structure for the review: folders and channels for all states, valid roles, no null values",
+        "de": "Objektstruktur für das Review: Ordner und Kanäle für alle States, gültige Rollen, keine Nullwerte",
+        "ru": "Структура объектов для проверки: папки и каналы для всех состояний, допустимые роли, без значений null",
+        "pt": "Estrutura de objetos para a revisão: pastas e canais para todos os estados, funções válidas, sem valores nulos",
+        "nl": "Objectstructuur voor de review: mappen en kanalen voor alle states, geldige rollen, geen null-waarden",
+        "fr": "Structure des objets pour la revue : dossiers et canaux pour tous les états, rôles valides, aucune valeur nulle",
+        "it": "Struttura degli oggetti per la revisione: cartelle e canali per tutti gli stati, ruoli validi, nessun valore nullo",
+        "es": "Estructura de objetos para la revisión: carpetas y canales para todos los estados, roles válidos, sin valores nulos",
+        "pl": "Struktura obiektów do przeglądu: foldery i kanały dla wszystkich stanów, poprawne role, bez wartości null",
+        "uk": "Структура об'єктів для перевірки: папки та канали для всіх станів, допустимі ролі, без значень null",
+        "zh-cn": "用于审核的对象结构：所有状态都有文件夹和通道，角色有效，没有空值"
+      },
       "0.2.1": {
         "en": "Checker fixes: workflow and tooling",
         "de": "Checker-Korrekturen: Workflow und Werkzeuge",

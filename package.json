@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nuasense",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "NuaSense for ioBroker: what your weather station means for your house and garden (frost tonight, watering today, rain next 24 h, plausibility), and optionally forward a station from ioBroker to NuaSense",
   "author": {
     "name": "NuaSense",

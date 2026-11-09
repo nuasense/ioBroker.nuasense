@@ -46,6 +46,9 @@ When you connect a station, NuaSense stores its readings and computes your forec
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### 0.2.2 (2026-11-09)
+* (NuaSense) object structure for the review: folders and channels for all states, valid roles, no null values
+
 ### 0.2.1 (2026-11-05)
 * (NuaSense) checker fixes: workflow and tooling
 
