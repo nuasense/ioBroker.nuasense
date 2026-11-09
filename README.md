@@ -9,11 +9,11 @@
 
 ## NuaSense adapter for ioBroker
 
-What your weather station means for your house and garden, as ioBroker states — and, if you like, your station forwarded from ioBroker to NuaSense. The first three stations on a NuaSense account connect free.
+What your weather station means for your house and garden, as ioBroker states — and, if you like, your station forwarded from ioBroker to [NuaSense](https://nuasense.com). The first three stations on a NuaSense account connect free.
 
 ### Read
 
-Make an API key in the NuaSense console under **API Keys** (scope `ingest:write`; it is what reads your own stations), put it into the adapter, and tell it what the garden mostly is (lawn, vegetables, flower beds and shrubs) and your sprinkler's rate in mm per hour (pop-up sprinkler about 10, drip line 2–4; 0 for millimetres only). Every 15 minutes (configurable) the adapter writes, per station:
+Make an API key in the [NuaSense console](https://platform.nuasense.com) under **API Keys** (scope `ingest:write`; it is what reads your own stations), put it into the adapter, and tell it what the garden mostly is (lawn, vegetables, flower beds and shrubs) and your sprinkler's rate in mm per hour (pop-up sprinkler about 10, drip line 2–4; 0 for millimetres only). Every 15 minutes (configurable) the adapter writes, per station:
 
 | state | meaning |
 |---|---|
